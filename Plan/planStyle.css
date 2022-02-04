@@ -1,0 +1,650 @@
+html {
+    background-color: rgb(61, 61, 61);
+    color: rgb(218, 205, 205);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.settings {
+    border-radius: 10px;
+    background-color: rgb(93, 93, 93);
+    height: 70px;
+    width: 1900px;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+}
+
+.settingsButton {
+    background-color: rgb(61, 61, 61);
+    color: rgb(219, 206, 206);
+    border-radius: 10px;
+    border: none;
+    height: 50px;
+    width: 80px;
+    margin-top: 10px;
+    display: none;
+}
+
+.settingsButton:hover {
+    background-color: rgb(82, 82, 82);
+}
+
+.settingsLabel {
+    margin-left: 20px;
+    grid-column: span 17;
+}
+
+.classesContainer {
+    position: relative;
+    display: none;
+}
+
+.planTable {
+    border-radius: 10px;
+    background-color: rgb(93, 93, 93);
+    height: 841px;
+    width: 1900px;
+    position: absolute;
+    margin-left: 2px;
+}
+
+.planTable table {
+    height: 800px;
+    width: 1870px;
+    border-collapse: collapse;
+    border-spacing: 0px 0px;
+    margin-left: 10px;
+    z-index: 0;
+    text-align: center;
+}
+
+.planTable table td {
+    height: 44px;
+}
+
+.planTable table td:first-child {
+    width: 55px;
+}
+
+.planTable table td:nth-child(n + 2) {
+    width: 257px;
+}
+
+.newHour {
+    height: 100%;
+    margin: -1px;
+    border-bottom: 2px solid rgb(125, 125, 125);
+    border-right: 1px solid rgb(125, 125, 125);
+    border-top: 1px solid rgb(125, 125, 125);
+    border-left: 1px solid rgb(125, 125, 125);
+}
+
+.hour00, .hour15, .hour30 {
+    height: 10px;
+    border-bottom: 1px solid rgb(125, 125, 125);
+}
+
+.hour45 {
+    height: 10px;
+}
+
+.popupOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 20;
+}
+
+.popupOverlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+    min-height: 250px;
+    width: 400px;
+    position: relative;
+}
+
+.popup h2 {
+    margin-top: 0;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+}
+
+.popup .close:hover {
+    color: rgb(93, 93, 93);
+}
+
+.popupContent {
+    max-height: 30%;
+    overflow-wrap: break-word;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popupContentRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.blockNote {
+    height: 150px;
+    width: 90%;
+    overflow: auto;
+}
+
+select {
+    margin-left: 15px;
+    color: rgb(219, 206, 206);
+    width: 250px;
+    height: 50px;
+    font-size: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(75, 75, 75);
+    border: none;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
+    text-align: center;
+}
+
+    select::-ms-expand {
+        display: none;
+    }
+
+select:hover {
+    color: rgb(219, 206, 206);
+    background-color: rgb(93, 93, 93);
+}
+
+select option {
+    height: 25px;
+}
+
+.formInput {
+    width: 320px;
+    height: 50px;
+    background-color: rgb(75, 75, 75);
+    color: rgb(219, 206, 206);
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 10px;
+    font-size: 15px;
+    margin-left: 30px;
+}
+
+.formInput:hover, :focus {
+    outline: none;
+}
+
+textarea {
+    border-radius: 10px;
+    background-color: rgb(75, 75, 75);
+    color: rgb(219, 206, 206);
+    resize: none;
+    margin-left: 30px;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.startHour {
+    margin-left: 18px;
+}
+
+.startDay {
+    margin-left: 54px;
+}
+
+.errorMessage {
+    text-align: center;
+    color: rgb(200, 0, 0);
+    margin-bottom: 10px;
+}
+
+.formContainer {
+    width: 550px;
+    height: 350px;
+    overflow-wrap: break-word;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 10px;
+    background-color: rgb(85, 85, 85);
+}
+
+.signUpContainer {
+    display: none;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.formRow div p {
+    vertical-align: middle;
+}
+
+.formRow input {
+    width: 450px;
+    height: 50px;
+    background-color: rgb(61, 61, 61);
+    border: none;
+    border-radius: 10px;
+    color: rgb(219, 206, 206);
+    font-size: 15px;
+}
+
+.formRow input:focus {
+    outline: none;
+}
+
+.formButton {
+    background-color: rgb(61, 61, 61);
+    color: rgb(219, 206, 206);
+    border-radius: 10px;
+    border: none;
+    height: 50px;
+    width: 246px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.formButton:hover {
+    background-color: rgb(82, 82, 82);
+}
+
+.addNewClasses {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.inputColor {
+    margin-left: 220px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(75, 75, 75);
+}
+
+.inputColor:focus {
+    outline: none;
+}
+
+.redButton {
+    background-color: rgb(255, 100, 100);
+    color: rgb(0, 0, 0);
+}
+
+.redButton:hover {
+    background-color: rgb(255, 150, 150);
+    color: rgb(50, 50, 50);
+}
+
+.greenButton {
+    background-color: rgb(100, 255, 100);
+    color: rgb(0, 0, 0);
+}
+
+.greenButton:hover {
+    background-color: rgb(150, 255, 150);
+    color: rgb(50, 50, 50);
+}
+
+/* Duży telefon poziomo */
+@media only screen and (min-width: 700px) and (max-height: 425px) {
+    .mainDisplay {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .settings {
+        width: 150px;
+        height: 96vh;
+        margin-bottom: 0;
+        display: block;
+        align-items: center;
+    }
+
+    .settingsButton {
+        margin-left: 35px;
+    }
+
+    #addClasses {
+        margin-top: 160px;
+    }
+
+    .planTable {
+        margin-left: 165px;
+        width: calc(100vw - 180px);
+        height: 96vh;
+    }
+
+    .formContainer {
+        margin-top: 20px;
+    }
+
+    .popupOverlay {
+        overflow: auto;
+    }
+
+    .classesContainer {
+        overflow-y: scroll;
+        overflow-x: auto;
+        margin-left: 10px;
+        width: 97%;
+        height: 100%;
+    }
+
+    .planTableTable {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    .planTableTable tbody {
+        display: block;
+    }
+}
+
+/* Duży telefon pionowo */
+@media only screen and (max-width: 425px) and (min-height: 750px) {
+    .settings {
+        height: 100px;
+        width: 102vw;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+    }
+
+    .settingsLabel {
+        margin-left: 10px;
+        grid-column: span 2;
+    }
+    
+    .settingsButton {
+        margin-top: 0;
+    }
+
+    .planTable {
+        height: calc(100vh - 65px);
+        width: 102vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        width: calc(100vw - 10px);
+    }
+
+    .formRow input {
+        width: 290px;
+    }
+
+    .formButton {
+        width: 150px;
+    }
+
+    .planTableTable {
+        margin-right: 20px;
+    }
+
+    .classesContainer {
+        margin-left: 10px;
+        width: 95%;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+}
+
+/* Wąski telefon pionowo */
+@media only screen and (max-width: 400px) and (min-height: 750px) {
+    .settings {
+        width: 107vw;
+    }
+
+    .classesContainer {
+        margin-top: 10px;
+        height: 97%;
+        overflow: auto;
+    }
+
+    .planTable {
+        height: calc(100vh - 20px);
+        width: 107vw;
+    }
+}
+
+/* Wąski telefon poziomo */
+@media only screen and (min-width: 750px) and (max-height: 400px) {
+    #addClasses {
+        margin-top: 140px;
+    }
+}
+
+/* Średni telefon pionowo */
+@media only screen and (max-width: 400px) and (max-height: 750px) {
+    .settings {
+        height: 100px;
+        width: 116vw;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+    }
+
+    .settingsLabel {
+        margin-left: 10px;
+        grid-column: span 2;
+    }
+    
+    .settingsButton {
+        margin-top: 0;
+    }
+
+    .planTable {
+        height: 105vh;
+        width: 116vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        width: 108vw;
+    }
+
+    .formRow input {
+        width: 290px;
+    }
+
+    .formButton {
+        width: 150px;
+    }
+
+    .planTableTable {
+        margin-right: 20px;
+    }
+
+    .classesContainer {
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 95%;
+        height: 97%;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+}
+
+/* Średni telefon poziomo */
+@media only screen and (max-width: 750px) and (max-height: 400px) {
+    .formContainer {
+        margin-top: 10px;
+        height: 95%;
+    }
+
+    #addClasses {
+        margin-top: 110px;
+    }
+
+    .classesContainer {
+        margin-top: 10px;
+        height: 95%;
+    }
+}
+
+/* Mały telefon pionowo */
+@media only screen and (max-width: 400px) and (max-height: 700px) {
+    .settings {
+        height: 70px;
+        width: 112vw;
+    }
+
+    .planTable {
+        height: 103vh;
+        width: 112vw;
+    }
+
+    .formContainer {
+        margin-top: 100px;
+    }
+}
+
+/* Mały telefon poziomo */
+@media only screen and (max-width: 700px) and (max-height: 400px) {
+    .mainDisplay {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .settings {
+        width: 150px;
+        height: 96vh;
+        margin-bottom: 0;
+        display: block;
+        align-items: center;
+    }
+
+    .settingsButton {
+        margin-left: 35px;
+    }
+
+    #addClasses {
+        margin-top: 125px;
+    }
+
+    .planTable {
+        margin-left: 165px;
+        width: calc(100vw - 180px);
+        height: 96vh;
+    }
+
+    .formContainer {
+        margin-top: 20px;
+        width: 85%;
+        height: 90%;
+    }
+
+    .formRow input {
+        width: 300px;
+    }
+
+    .formButton {
+        width: 150px;
+    }
+
+    .popupOverlay {
+        overflow: auto;
+    }
+
+    .classesContainer {
+        overflow-y: scroll;
+        overflow-x: auto;
+        margin-left: 8px;
+        margin-top: 10px;
+        width: 97%;
+        height: 95%;
+    }
+
+    .planTableTable {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    .planTableTable tbody {
+        display: block;
+    }
+}
+
+/* Fold złożony pionowo */
+@media only screen and (max-width: 300px) and (max-height: 700px) {
+    .settings {
+        height: 100px;
+        width: 150vw;
+    }
+
+    .planTable {
+        height: 137vh;
+        width: 150vw;
+    }
+
+    .formContainer {
+        margin-top: 200px;
+        width: 95%;
+    }
+}
+
+/* Fold złożony poziomo */
+@media only screen and (max-width: 700px) and (max-height: 300px) {
+    .formRow {
+        margin-top: 0px;
+    }
+
+    .formRow p {
+        margin-top: 5px;
+    }
+
+    .formRow input, .formButton {
+        height: 30px;
+    }
+
+    #addClasses {
+        margin-top: 35px;
+    }
+}
