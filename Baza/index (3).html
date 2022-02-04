@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>Test</title>
+
+</head>
+
+<body>
+
+	<script>
+	
+	let ajax=new XMLHttpRequest();
+	
+	ajax.open("POST",`http://192.168.0.4/planZajec/addSubject.php?name=Nazwa &day=Poniedziałek &start_time=8:00 &end_time=9:30 &note=Notatka &login=test &color=RED`,true);
+	
+	ajax.onreadystatechange=function(){
+		if(ajax.readyState==4 && ajax.status==200)
+		{
+			switch(ajax.responseText) {
+			case "1":
+				alert("Dodano przedmiot");
+				break;
+			case "0":
+				alert("Błąd w zapytaniu");
+				break;
+			case "-1":
+				alert("Błąd w połączeniu z bazą");
+				break;
+			case "-2":
+				alert("Dane zostały źle przekazane");
+				break;
+			default:
+				alert("Nieznany błąd");
+			}
+		}	
+	};
+		
+	ajax.send();
+	
+	</script>
+
+</body>
+
+</html>

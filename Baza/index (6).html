@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>Test</title>
+
+</head>
+
+<body>
+
+	<script>
+	
+	let ajax=new XMLHttpRequest();
+	
+	ajax.open("POST",`http://192.168.0.4/planZajec/userSubjects.php?login=test2`,true);
+	
+	ajax.onreadystatechange=function(){
+		if(ajax.readyState==4 && ajax.status==200)
+		{
+			switch(ajax.responseText) {
+			case "-1":
+				alert("Błąd w połączeniu z bazą");
+				break;
+			case "-2":
+				alert("Dane zostały źle przekazane");
+				break;
+			default:
+				alert("Poprawne pobranie");
+				alert(JSON.parse(ajax.responseText));
+			}
+		}	
+	};
+		
+	ajax.send();
+	
+	</script>
+
+</body>
+
+</html>

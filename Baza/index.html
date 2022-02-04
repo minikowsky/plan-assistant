@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>Test</title>
+
+</head>
+
+<body>
+
+	<script>
+	
+	let ajax=new XMLHttpRequest();
+	
+	ajax.open("POST",`http://192.168.0.4/planZajec/signup.php?login=test& password=test`,true);
+	
+	ajax.onreadystatechange=function(){
+		if(ajax.readyState==4 && ajax.status==200)
+		{
+			switch(ajax.responseText) {
+			case "1":
+				alert("Poprawne wykonanie");
+				break;
+			case "0":
+				alert("Błędne zapytanie");
+				break;
+			case "-1":
+				alert("Błąd w połączeniu z bazą");
+				break;
+			case "-2":
+				alert("Dane zostały źle przekazane");
+				break;
+			default:
+				alert("Konto o takim loginie już istnieje");
+			}
+		}	
+	};
+		
+	ajax.send();
+	
+	</script>
+
+</body>
+
+</html>
