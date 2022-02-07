@@ -335,7 +335,7 @@ textarea:focus {
 
     .settings {
         width: 150px;
-        height: 96vh;
+        height: 95vh;
         margin-bottom: 0;
         display: block;
         align-items: center;
@@ -352,7 +352,7 @@ textarea:focus {
     .planTable {
         margin-left: 165px;
         width: calc(100vw - 180px);
-        height: 96vh;
+        height: 95vh;
     }
 
     .formContainer {
@@ -555,7 +555,7 @@ textarea:focus {
 
     .settings {
         width: 150px;
-        height: 96vh;
+        height: 94vh;
         margin-bottom: 0;
         display: block;
         align-items: center;
@@ -572,7 +572,7 @@ textarea:focus {
     .planTable {
         margin-left: 165px;
         width: calc(100vw - 180px);
-        height: 96vh;
+        height: 94vh;
     }
 
     .formContainer {
@@ -646,5 +646,380 @@ textarea:focus {
 
     #addClasses {
         margin-top: 35px;
+    }
+}
+
+/* Fold rozłożony pionowo */
+@media only screen and (min-width: 500px) and (min-height: 700px) and (max-height: 750px) {
+    .settings {
+        height: 100px;
+        width: 96vw;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+    }
+
+    .settingsLabel {
+        margin-left: 10px;
+        grid-column: span 2;
+    }
+    
+    .settingsButton {
+        margin-top: 0;
+    }
+
+    .planTable {
+        height: calc(100vh - 130px);
+        width: 96vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        margin-top: 100px;
+        width: calc(100vw - 40px);
+    }
+
+    .formRow input {
+        width: 290px;
+    }
+
+    .formButton {
+        width: 150px;
+    }
+
+    .planTableTable {
+        margin-right: 20px;
+    }
+
+    .classesContainer {
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 97%;
+        width: 95%;
+        overflow: auto;
+    }
+}
+
+/* Fold rozłożony poziomo */
+@media only screen and (min-width: 700px) and (max-width: 750px) and (min-height: 500px) {
+    .settings {
+        height: 100px;
+        width: 97vw;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        align-items: center;
+    }
+
+    .settingsLabel {
+        margin-left: 10px;
+        grid-column: span 4;
+    }
+    
+    .settingsButton {
+        margin-top: 0;
+    }
+
+    .planTable {
+        height: calc(100vh - 130px);
+        width: 97vw;
+    }
+
+    .popupOverlay {
+        overflow: auto;
+    }
+
+    .formContainer {
+        margin-top: 15px;
+        width: calc(100vw - 40px);
+    }
+
+    .planTableTable {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .classesContainer {
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 97%;
+        width: 95%;
+        overflow: auto;
+    }
+}
+
+/* Tablet poziomo */
+@media only screen and (min-width: 1000px) and (max-height: 850px) {
+    .settings {
+        height: 100px;
+        width: 98vw;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        align-content: center;
+    }
+
+    .settingsLabel {
+        margin-left: 10px;
+        grid-column: span 9;
+    }
+    
+    .settingsButton {
+        margin-top: 10px;
+    }
+
+    .planTable {
+        height: calc(100vh - 130px);
+        width: 98vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        margin-top: 100px;
+        width: 50vw;
+    }
+
+    .formRow input {
+        width: 490px;
+    }
+
+    .formButton {
+        width: 200px;
+    }
+
+    .planTableTable {
+        margin-right: 0px;
+    }
+
+    .classesContainer {
+        margin-top: 5px;
+        height: 98%;
+        width: 98%;
+        overflow: auto;
+    }
+}
+
+/* Tablet pionowo */
+@media only screen and (max-width: 850px) and (min-height: 1000px) {
+    .settings {
+        height: 270px;
+        width: 98vw;
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: repeat(4, 1fr);
+        align-items: center;        
+    }
+
+    .settingsLabel {
+        margin-left: 370px;
+        grid-row: 1;
+    }
+
+    #addClasses {
+        margin-left: 350px;
+        width: 150px;
+        grid-row: 2;
+    }
+
+    #settings {
+        margin-left: 350px;
+        width: 150px;
+        grid-row: 3;
+    }
+
+    #logOut {
+        margin-left: 350px;
+        width: 150px;
+        grid-row: 4;
+    }
+    
+    .settingsButton {
+        margin-top: 0;
+    }
+
+    .planTable {
+        height: calc(100vh - 300px);
+        width: 98vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        margin-top: 100px;
+        width: 70vw;
+    }
+
+    .formRow input {
+        width: 490px;
+    }
+
+    .formButton {
+        width: 200px;
+    }
+
+    .classesContainer {
+        margin-top: 20px;
+        height: 98%;
+        width: 98%;
+        overflow: auto;
+    }
+}
+
+/* Mały tablet poziomo */
+@media only screen and (min-width: 1000px) and (max-height: 800px) {
+    .formContainer input {
+        width: 400px;
+    }
+}
+
+/* Mały tablet pionowo */
+@media only screen and (max-width: 800px) and (min-height: 1000px) {
+    .formContainer input {
+        width: 400px;
+    }
+
+    .settingsLabel {
+        margin-left: 340px;
+    }
+    
+    #addClasses {
+        margin-left: 320px;
+    }
+
+    #settings {
+        margin-left: 320px;
+    }
+
+    #logOut {
+        margin-left: 320px;
+    }
+}
+
+/* Duży tablet poziomo */
+@media only screen and (min-width: 1300px) and (max-width: 1400px) and (max-height: 950px) {
+    .settings {
+        margin-left: 5px;
+        height: 100px;
+        width: 98vw;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        align-content: center;
+    }
+
+    .settingsLabel {
+        margin-left: 10px;
+        grid-column: span 9;
+    }
+    
+    .settingsButton {
+        margin-top: 10px;
+    }
+
+    .planTable {
+        margin-left: 5px;
+        height: calc(100vh - 130px);
+        width: 98vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        margin-top: 100px;
+        width: 50vw;
+    }
+
+    .formRow input {
+        width: 490px;
+    }
+
+    .formButton {
+        width: 200px;
+    }
+
+    .planTableTable {
+        margin-right: 0px;
+    }
+
+    .classesContainer {
+        margin-top: 5px;
+        height: 98%;
+        width: 98%;
+        overflow: auto;
+    }
+}
+
+/* Duży tablet pionowo */
+@media only screen and (max-width: 950px) and (min-height: 1300px) and (max-height: 1400px) {
+    .settings {
+        height: 270px;
+        width: 98vw;
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: repeat(4, 1fr);
+        align-items: center;        
+    }
+
+    .settingsLabel {
+        margin-left: 390px;
+        grid-row: 1;
+    }
+
+    #addClasses {
+        margin-left: 370px;
+        width: 150px;
+        grid-row: 2;
+    }
+
+    #settings {
+        margin-left: 370px;
+        width: 150px;
+        grid-row: 3;
+    }
+
+    #logOut {
+        margin-left: 370px;
+        width: 150px;
+        grid-row: 4;
+    }
+    
+    .settingsButton {
+        margin-top: 0;
+    }
+
+    .planTable {
+        height: calc(100vh - 300px);
+        width: 98vw;
+    }
+
+    .popupOverlay {
+        height: calc(100vh - 100px);
+    }
+
+    .formContainer {
+        margin-top: 100px;
+        width: 70vw;
+    }
+
+    .formRow input {
+        width: 490px;
+    }
+
+    .formButton {
+        width: 200px;
+    }
+
+    .classesContainer {
+        margin-top: 20px;
+        height: 98%;
+        width: 98%;
+        overflow: auto;
     }
 }
