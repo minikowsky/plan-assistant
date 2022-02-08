@@ -1,6 +1,5 @@
 html {
-    background-color: rgb(61, 61, 61);
-    color: rgb(218, 205, 205);
+    color: rgb(219, 206, 206);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -74,18 +73,17 @@ html {
 .newHour {
     height: 100%;
     margin: -1px;
-    border-bottom: 2px solid rgb(125, 125, 125);
-    border-right: 1px solid rgb(125, 125, 125);
-    border-top: 1px solid rgb(125, 125, 125);
-    border-left: 1px solid rgb(125, 125, 125);
+    border-style: solid;
+    border-color: rgb(125, 125, 125);
+    border-width: 1px 1px 2px 1px;
 }
 
-.hour00, .hour15, .hour30 {
+.hourInside {
     height: 10px;
     border-bottom: 1px solid rgb(125, 125, 125);
 }
 
-.hour45 {
+.hourOutside {
     height: 10px;
 }
 
@@ -120,7 +118,7 @@ html {
     margin-top: 0;
 }
 
-.popup .close {
+.close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -131,7 +129,7 @@ html {
     color: rgb(51, 51, 51);
 }
 
-.popup .close:hover {
+.close:hover {
     color: rgb(93, 93, 93);
 }
 
@@ -188,7 +186,7 @@ select option {
     height: 25px;
 }
 
-.formInput {
+.popupInput {
     width: 320px;
     height: 50px;
     background-color: rgb(75, 75, 75);
@@ -199,7 +197,7 @@ select option {
     margin-left: 30px;
 }
 
-.formInput:hover, :focus {
+.popupInput:focus {
     outline: none;
 }
 
@@ -324,6 +322,41 @@ textarea:focus {
 .greenButton:hover {
     background-color: rgb(150, 255, 150);
     color: rgb(50, 50, 50);
+}
+
+.highContrastButton {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 0);
+}
+
+.highContrastButton:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.blueButton {
+    background-color: rgb(0, 95, 150);
+}
+
+.blueButton:hover {
+    background-color: rgb(50, 115, 150);
+}
+
+.orangeButton {
+    background-color: rgb(249, 142, 29);
+    color: rgb(0, 0, 0);
+}
+
+.orangeButton:hover {
+    background-color: rgb(249, 175, 70);
+}
+
+.blackNgoldButton {
+    background-color: rgb(0, 0, 0);
+    color: rgb(152, 131, 50);
+}
+
+.blackNgoldButton:hover {
+    background-color: rgb(50, 50, 50);
 }
 
 /* Duży telefon poziomo */
