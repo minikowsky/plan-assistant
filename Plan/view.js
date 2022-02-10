@@ -38,7 +38,6 @@ function addClassesClose() {
 // Otwarcie okienka wyświetlenia / edycji bloku
 function editClassesOpen(id) {
     clickedID = id;
-    console.log(clickedID);
     let name = document.getElementById("name" + id).innerHTML;
     let note = document.getElementById("note" + id).innerHTML;
 
@@ -57,6 +56,7 @@ function addNewClasses(mode) {
     let note = "";
     let color = "";
     let checkColor = "";
+    let colorToSave = "";
 
     if (mode == "new") {
         name = document.getElementById("classesName").value;
@@ -67,6 +67,7 @@ function addNewClasses(mode) {
         color = document.getElementById("classesColor").value;
         checkColor = hexToRGB(color);
         id = totalSubjects;
+        colorToSave = color.substring(1);
     }
     else if (mode == "edit") {                
         name = document.getElementById("editExistingClassesName").value;
@@ -76,6 +77,8 @@ function addNewClasses(mode) {
         note = document.getElementById("editExistingClassesNoteText").value;
         color = document.getElementById("editClassesColor").value;
         checkColor = hexToRGB(color);
+        colorToSave = color.substring(1);
+        document.getElementById("classes").removeChild(document.getElementById(clickedID));
     }                       
     
     let day = selectedDay.options[selectedDay.selectedIndex].innerHTML;
@@ -86,7 +89,7 @@ function addNewClasses(mode) {
         let marginTop = topMargin(selectedStart);
         let marginLeft = leftMargin(selectedDay);
         let height = blockHeight(selectedStart, selectedEnd);
-
+        
         newClasses = document.createElement("div");
         newClasses.id = id;
         newClasses.style.backgroundColor = color;
@@ -114,7 +117,7 @@ function addNewClasses(mode) {
         newClasses.onmousedown = function() {
             editClassesOpen(this.id);
         }
-
+        
         newClassesContainer = document.createElement("div");
         newClassesTopRow = document.createElement("div");
         newClassesRowDay = document.createElement("div");
@@ -136,11 +139,10 @@ function addNewClasses(mode) {
         parent.appendChild(newClasses);
 
         if(mode == "new") {
-            console.log(totalSubjects,name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,color);
-            base_addSubject(totalSubjects,name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,color);
+            base_addSubject(totalSubjects,name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,colorToSave);
             totalSubjects++;
         } else if (mode == "edit"){
-            base_editSubject(parseInt(clickedID),name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,color);
+            base_editSubject(parseInt(clickedID),name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,colorToSave);
         }
         
         document.getElementById("classesName").value = "";
@@ -307,11 +309,11 @@ function loadSubjectsAsync(subjectsToLoad){
             
             let name = s.name;
             let note = s.note;
-            let checkColor = hexToRGB(s.color);
+            let checkColor = hexToRGB('#'+s.color);
     
             newClasses = document.createElement("div");
             newClasses.id = s.id;
-            newClasses.style.backgroundColor = s.color;
+            newClasses.style.backgroundColor = '#'+s.color;
             newClasses.style.zIndex = "10";
             newClasses.style.position = "absolute";
             newClasses.style.top = marginTop + "px";
@@ -497,21 +499,28 @@ function planExportAsync(jsonExport) {
 
 // import planu
 function planImport() {
-    const selectedFile = document.getElementById('importFile').files[0];
-    if (selectedFile) {
-        var reader = new FileReader();
-        reader.readAsText(selectedFile, "UTF-8");
-        reader.onload = function (evt) {
-            console.log(JSON.parse(JSON.parse(evt.target.result)));
-            document.getElementById("classes").style.display = "none";
-            document.getElementById("classes").style.display = "block";
-            tableGenerate();
-            loadSubjectsAsync(JSON.parse(JSON.parse(evt.target.result)));
-        }
-        reader.onerror = function (evt) {
-            console.log("error reading file");
+    //console.log(document.getElementById("classes").children.length);
+    if(document.getElementById("classes").children.length==1){
+        const selectedFile = document.getElementById('importFile').files[0];
+        if (selectedFile) {
+            var reader = new FileReader();
+            reader.readAsText(selectedFile, "UTF-8");
+            reader.onload = function (evt) {
+                const jj =JSON.parse(JSON.parse(evt.target.result));
+                for(const j of jj){
+                    base_addSubject(totalSubjects,j.name,j.day,j.start_time,j.end_time,j.note,currentUser,j.color);
+                    totalSubjects++;
+                }
+                loadSubjectsAsync(jj);
+                document.getElementById('importFile').value="";
+            }
+            reader.onerror = function (evt) {
+                console.log("error reading file");
+                document.getElementById('importFile').value="";
+            }
         }
     }
+    
 }
 
 // przejście do potwierdzenia usunięcia bloku zajęć
@@ -546,7 +555,7 @@ function editBlockAsync(s){
     document.getElementById("editStart").selectedIndex = getTimeIndex(s[0].start_time);
     document.getElementById("editEnd").selectedIndex = getTimeIndex(s[0].end_time);
     document.getElementById("editExistingClassesNoteText").value = s[0].note;
-    document.getElementById("editClassesColor").value = s[0].color;
+    document.getElementById("editClassesColor").value = '#' + s[0].color;
 
     document.getElementById("editExistingClassesName").value = document.getElementById("editClassesName").innerHTML;
     document.getElementById("editExistingClassesNoteText").value = document.getElementById("editClassesNote").innerHTML.replaceAll("<br>", "\n");
