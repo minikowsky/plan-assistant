@@ -201,6 +201,10 @@ select option {
     outline: none;
 }
 
+.fileInput {
+    display: none;
+}
+
 textarea {
     border-radius: 10px;
     background-color: rgb(75, 75, 75);
@@ -283,6 +287,12 @@ textarea:focus {
 
 .formButton:hover {
     background-color: rgb(82, 82, 82);
+}
+
+.inputLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addNewClasses {
