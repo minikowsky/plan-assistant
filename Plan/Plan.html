@@ -184,12 +184,30 @@
                         <button class="formButton" onmousedown="planExport()">Eksportuj plan zajęć</button>
                     </div>
                     <div class="popupContentRow">
-                        <input type="file" id="importFile" name="myfile">
                         <button class="formButton" onmousedown="planImport()">Importuj plan zajęć</button> 
                     </div>
                     <div class="popupContentRow">
                         <button class="formButton redButton" onmousedown="pleaseConfirm()"><strong>Usuń konto</strong></button>
                     </div>                       
+                </div>
+            </div>
+        </div>
+
+        <!-- okienko import pliku -->
+        <div id="importPopup" class="popupOverlay">
+            <div class="popup">
+                <h2>Import planu</h2>
+                <a class="close" href="#settingsPopup">&times;</a>
+                <div class="popupContent">
+                    <div class="popupContentRow">
+                        <label>
+                            <input type="file" id="importFile" class="fileInput" name="myfile">
+                            <div class="formButton inputLabel">Wybierz plik</div>
+                        </label>
+                    </div>
+                    <div class="popupContentRow">
+                        <button class="formButton" onmousedown="importPlan()">Importuj plan zajęć</button> 
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -242,6 +260,22 @@
                     <div class="popupContentRow">
                         <button class="formButton greenButton" onmousedown="confirmNegative()"><strong>NIE</strong></button>
                     </div>                       
+                </div>
+            </div>
+        </div>
+
+        <!-- okienko błędu połączenia z bazą -->
+        <div id="errorPopup" class="popupOverlay">
+            <div class="popup">
+                <h2>Uwaga</h2>
+                <a class="close" href="#settingsPopup">&times;</a>
+                <div class="popupContent">
+                    <div class="popupContentRow">
+                        <h3 id="errorPopupMessage">&nbsp;</h3>
+                    </div>
+                    <div class="popupContentRow">
+                        <button class="formButton greenButton" onmousedown="closeError()"><strong>OK</strong></button> 
+                    </div>                      
                 </div>
             </div>
         </div>

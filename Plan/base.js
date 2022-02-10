@@ -1,4 +1,4 @@
-let server = "http://192.168.1.110/planZajec";
+let server = "http://192.168.50.21/planZajec";
 
 function base_login(login, password){
     let ajax=new XMLHttpRequest();
@@ -69,19 +69,19 @@ function base_deleteUser(login) {
 		{
 			switch(ajax.responseText) {
 			case "1":
-				alert("Wykonane");
+				showError("Wykonane");
 				break;
 			case "0":
-				alert("Błąd w zapytaniu");
+				showError("Błąd w zapytaniu");
 				break;
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				showError("Nieznany błąd");
 			}
 		}	
 	};
@@ -102,16 +102,16 @@ function base_editUserTheme(login, theme) {
 				console.log("Zmieniono motyw");
 				break;
 			case "0":
-				alert("Błąd w zapytaniu");
+				showError("Błąd w zapytaniu");
 				break;
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				showError("Nieznany błąd");
 			}
 		}	
 	};
@@ -129,10 +129,10 @@ function base_getSubjectById(login, id){
 		{
 			switch(ajax.responseText) {
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
 				console.log("Poprawne pobranie");
@@ -154,10 +154,10 @@ function base_getSubjectsByUser(login) {
 		{
 			switch(ajax.responseText) {
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
 				console.log("Poprawne pobranie");
@@ -186,10 +186,10 @@ function base_getJsonOfSubjects(login) {
 		{
 			switch(ajax.responseText) {
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
 				console.log("Poprawne pobranie");
@@ -220,16 +220,16 @@ function base_addSubject(id, name, day, start_time, end_time, note, login, color
 				console.log("Dodano przedmiot");
 				break;
 			case "0":
-				alert("Błąd w zapytaniu");
+				showError("Błąd w zapytaniu");
 				break;
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				showError("Nieznany błąd");
 			}
 		}	
 	};
@@ -251,16 +251,16 @@ function base_editSubject(id, name, day, start_time, end_time, note, login, colo
 				console.log("Edytowano przedmiot");
 				break;
 			case "0":
-				alert("Błąd w zapytaniu");
+				showError("Błąd w zapytaniu");
 				break;
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				showError("Nieznany błąd");
 			}
 		}	
 	};
@@ -281,16 +281,16 @@ function base_deleteSubject(id) {
 				console.log("Usunieto przedmiot");
 				break;
 			case "0":
-				alert("Błąd w zapytaniu");
+				showError("Błąd w zapytaniu");
 				break;
 			case "-1":
-				alert("Błąd w połączeniu z bazą");
+				showError("Błąd w połączeniu z bazą");
 				break;
 			case "-2":
-				alert("Dane zostały źle przekazane");
+				showError("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				showError("Nieznany błąd");
 			}
 		}	
 	};

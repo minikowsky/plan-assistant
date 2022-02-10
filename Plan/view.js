@@ -11,7 +11,6 @@ var blockWidth = 257;
 
 var currentUser = "";
 
-
 // Otwarcie okienka do dodawania bloku do planu
 function addClassesOpen() {
     if (document.location.href.includes("#addClassesPopup")) {
@@ -58,6 +57,8 @@ function addNewClasses(mode) {
     let checkColor = "";
     let colorToSave = "";
 
+    newClasses = document.createElement("div");
+    
     if (mode == "new") {
         name = document.getElementById("classesName").value;
         selectedDay = document.getElementById("day");
@@ -67,6 +68,7 @@ function addNewClasses(mode) {
         color = document.getElementById("classesColor").value;
         checkColor = hexToRGB(color);
         id = totalSubjects;
+        newClasses.id = id;
         colorToSave = color.substring(1);
     }
     else if (mode == "edit") {                
@@ -78,6 +80,7 @@ function addNewClasses(mode) {
         color = document.getElementById("editClassesColor").value;
         checkColor = hexToRGB(color);
         colorToSave = color.substring(1);
+        newClasses.id = clickedID;
         document.getElementById("classes").removeChild(document.getElementById(clickedID));
     }                       
     
@@ -88,10 +91,8 @@ function addNewClasses(mode) {
     if (start < end) {                
         let marginTop = topMargin(selectedStart);
         let marginLeft = leftMargin(selectedDay);
-        let height = blockHeight(selectedStart, selectedEnd);
+        let height = blockHeight(selectedStart.selectedIndex, start, selectedEnd.selectedIndex, end);
         
-        newClasses = document.createElement("div");
-        newClasses.id = id;
         newClasses.style.backgroundColor = color;
         newClasses.style.zIndex = "10";
         newClasses.style.position = "absolute";
@@ -112,7 +113,6 @@ function addNewClasses(mode) {
         else {
             newClasses.style.color = "rgb(219, 206, 206)"
         }
-
 
         newClasses.onmousedown = function() {
             editClassesOpen(this.id);
@@ -139,10 +139,10 @@ function addNewClasses(mode) {
         parent.appendChild(newClasses);
 
         if(mode == "new") {
-            base_addSubject(totalSubjects,name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,colorToSave);
+            base_addSubject(totalSubjects,name,selectedDay.value,selectedStart.value,selectedEnd.value,note.replaceAll("\n", "{br}"),currentUser,colorToSave);
             totalSubjects++;
         } else if (mode == "edit"){
-            base_editSubject(parseInt(clickedID),name,selectedDay.value,selectedStart.value,selectedEnd.value,note,currentUser,colorToSave);
+            base_editSubject(parseInt(clickedID),name,selectedDay.value,selectedStart.value,selectedEnd.value,note.replaceAll("\n", "{br}"),currentUser,colorToSave);
         }
         
         document.getElementById("classesName").value = "";
@@ -175,17 +175,13 @@ function leftMargin(day) {
     return initialLeft + ((day.selectedIndex) * (blockWidth + 2));
 }
 
-function blockHeight(start, end) {
-    let difference = (end.selectedIndex + 1) - start.selectedIndex;
+function blockHeight(startIndex, startValue, endIndex, endValue) {
+    let difference = (endIndex + 1) - startIndex;
     let height = (Math.floor(difference / 4) * 2) + (difference * 11) - 1;
-
-    let startValue = start.options[start.selectedIndex].innerHTML;
-    let endValue = end.options[end.selectedIndex].innerHTML;
 
     if (startValue.slice(-2) == "00" && endValue.slice(-2) == "00") return height - 1;
     if (startValue.slice(-2) != "00" && endValue.slice(-2) == "00") return height + 1;
     if (Math.floor(difference / 4) < (parseInt(endValue.slice(0, 2)) - parseInt(startValue.slice(0, 2)))) return height + 2;
-
 
     return height;
 }
@@ -284,7 +280,6 @@ function userLoginAsync(phpResponse, loginObject) {
             tableGenerate(); 
             chooseTheme(loginObject[0].theme);
             base_getSubjectsByUser(currentUser);
-
         } else {
             document.getElementById("errorLogIn").innerHTML = "Nie ma takiego użytkownika w bazie.";
         }
@@ -296,6 +291,7 @@ function userLoginAsync(phpResponse, loginObject) {
 function loadSubjectsAsync(subjectsToLoad){
     if(subjectsToLoad != false){
         totalSubjects = parseInt(subjectsToLoad[subjectsToLoad.length -1 ].id) + 1;
+
         for(let s of subjectsToLoad){
             
             let dayIndex = getDayIndex(s.day);
@@ -304,16 +300,15 @@ function loadSubjectsAsync(subjectsToLoad){
             
             let marginTop = startTimeIndex * 11 + ((Math.floor(startTimeIndex / 4)) * 2) + initialTop;
             let marginLeft = initialLeft + ((dayIndex) * (blockWidth + 2));
-            let difference = (endTimeIndex + 1) - startTimeIndex;
-            let height = (Math.floor(difference / 4) * 2) + (difference * 11) - 1;
+            let height = blockHeight(startTimeIndex, s.start_time.slice(0, 5), endTimeIndex-1, s.end_time.slice(0, 5));
             
             let name = s.name;
-            let note = s.note;
-            let checkColor = hexToRGB('#'+s.color);
+            let note = s.note.replaceAll("{br}", "\n");
+            let checkColor = hexToRGB("#"+s.color);
     
             newClasses = document.createElement("div");
             newClasses.id = s.id;
-            newClasses.style.backgroundColor = '#'+s.color;
+            newClasses.style.backgroundColor = "#" + s.color;
             newClasses.style.zIndex = "10";
             newClasses.style.position = "absolute";
             newClasses.style.top = marginTop + "px";
@@ -497,8 +492,13 @@ function planExportAsync(jsonExport) {
     document.body.removeChild(element);
 }
 
-// import planu
+// przejście do okna importu pliku
 function planImport() {
+    document.location.href = "#importPopup";
+}
+
+// import planu
+function importPlan() {
     //console.log(document.getElementById("classes").children.length);
     if(document.getElementById("classes").children.length==1){
         const selectedFile = document.getElementById('importFile').files[0];
@@ -553,7 +553,7 @@ function editBlockAsync(s){
     document.getElementById("editExistingClassesName").value = s[0].name;
     document.getElementById("editDay").selectedIndex = getDayIndex(s[0].day);
     document.getElementById("editStart").selectedIndex = getTimeIndex(s[0].start_time);
-    document.getElementById("editEnd").selectedIndex = getTimeIndex(s[0].end_time);
+    document.getElementById("editEnd").selectedIndex = getTimeIndex(s[0].end_time) - 1;
     document.getElementById("editExistingClassesNoteText").value = s[0].note;
     document.getElementById("editClassesColor").value = '#' + s[0].color;
 
@@ -561,4 +561,20 @@ function editBlockAsync(s){
     document.getElementById("editExistingClassesNoteText").value = document.getElementById("editClassesNote").innerHTML.replaceAll("<br>", "\n");
 
     document.location.href = "#editExistingClassesPopup";
+}
+
+// komunikaty o błędach
+function showError(message) {
+    document.getElementById("errorPopupMessage").innerHTML = message;
+    document.location.href = "#errorPopup";
+}
+
+function closeError() {
+    document.location.href = "#";
+}
+
+function getIdAsync(temp) {
+    console.log(temp.length + 1);
+
+    return temp.length;
 }
