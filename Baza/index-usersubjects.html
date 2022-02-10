@@ -14,18 +14,12 @@
 	
 	let ajax=new XMLHttpRequest();
 	
-	ajax.open("POST",`http://192.168.0.4/planZajec/deleteSubject.php?id=5`,true);
+	ajax.open("POST",`http://192.168.1.110/planZajec/userSubjects.php?login=test2`,true);
 	
 	ajax.onreadystatechange=function(){
 		if(ajax.readyState==4 && ajax.status==200)
 		{
 			switch(ajax.responseText) {
-			case "1":
-				alert("Usunieto przedmiot");
-				break;
-			case "0":
-				alert("Błąd w zapytaniu");
-				break;
 			case "-1":
 				alert("Błąd w połączeniu z bazą");
 				break;
@@ -33,7 +27,8 @@
 				alert("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				alert("Poprawne pobranie");
+				alert(JSON.parse(ajax.responseText));
 			}
 		}	
 	};

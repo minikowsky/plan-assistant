@@ -14,14 +14,14 @@
 	
 	let ajax=new XMLHttpRequest();
 	
-	ajax.open("POST",`http://192.168.0.4/planZajec/deleteUser.php?login=test`,true);
+	ajax.open("POST",`http://192.168.1.110/planZajec/editUserTheme.php?login=mata& theme=blackNgold`,true);
 	
 	ajax.onreadystatechange=function(){
 		if(ajax.readyState==4 && ajax.status==200)
 		{
 			switch(ajax.responseText) {
 			case "1":
-				alert("Wykonane");
+				alert("Zmieniono motyw");
 				break;
 			case "0":
 				alert("Błąd w zapytaniu");

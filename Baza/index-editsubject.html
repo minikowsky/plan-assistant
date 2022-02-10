@@ -14,14 +14,14 @@
 	
 	let ajax=new XMLHttpRequest();
 	
-	ajax.open("POST",`http://192.168.0.4/planZajec/addSubject.php?name=Nazwa &day=Poniedziałek &start_time=8:00 &end_time=9:30 &note=Notatka &login=test &color=RED`,true);
+	ajax.open("POST",`http://192.168.1.110/planZajec/editSubject.php?name=Mata &day=Wtorek &start_time=8:00 &end_time=9:30 &note=Notatka &id=5 &color=BLUE`,true);
 	
 	ajax.onreadystatechange=function(){
 		if(ajax.readyState==4 && ajax.status==200)
 		{
 			switch(ajax.responseText) {
 			case "1":
-				alert("Dodano przedmiot");
+				alert("Edytowano przedmiot");
 				break;
 			case "0":
 				alert("Błąd w zapytaniu");

@@ -35,16 +35,18 @@ class DataBase
 
         $result = mysqli_query($this->connect, $this->sql);
         $row = mysqli_fetch_assoc($result);
+		
+		$solutions = array();
 
         if (mysqli_num_rows($result) != 0) {
             $dblogin = $row['login'];
             $dbpassword = $row['password'];
             if ($dblogin == $login && $password == $dbpassword) {
-                $correct = true;
-            } else $correct = false;
-        } else $correct = false;
-
-        return $correct;
+                $solutions[] = $row;
+            }
+        }
+		
+        return $solutions;
     }
 
     function signUp($table, $login, $password)
@@ -67,11 +69,20 @@ class DataBase
         } else return false;
     }
 	
-	function addSubject($table, $name, $day, $start_time, $end_time, $note, $login, $color)
+	function editUserTheme($table, $login, $theme){
+		
+		$this->sql = "UPDATE " . $table . " SET theme = '$theme' where login = '$login'";
+		 
+		 if (mysqli_query($this->connect, $this->sql)) {
+            return true;
+        } else return false;
+	}
+	
+	function addSubject($table, $id, $name, $day, $start_time, $end_time, $note, $login, $color)
 	{
 		$this->sql =
-            "INSERT INTO " . $table . " (name, day, start_time, end_time, note, login, color) VALUES 
-			('$name', '$day', '$start_time', '$end_time', '$note', '$login', '$color')";
+            "INSERT INTO " . $table . " (id,name, day, start_time, end_time, note, login, color) VALUES 
+			('$id','$name', '$day', '$start_time', '$end_time', '$note', '$login', '$color')";
 			
 		if (mysqli_query($this->connect, $this->sql)) {
             return true;
@@ -91,6 +102,22 @@ class DataBase
 	function userSubjects($table, $login)
 	{
 		$this->sql = "select * from " . $table . " where login = '$login'";
+		
+		$result = mysqli_query($this->connect, $this->sql);
+		
+		$solutions = array();
+		
+		if ($result) {	
+			while ($row = mysqli_fetch_assoc($result)) {
+				$solutions[] = $row;
+			}	
+        }
+		return $solutions;
+	}
+
+    function getSubject($table, $login, $id)
+	{
+		$this->sql = "select * from " . $table . " where login = '$login' and id = '$id'";
 		
 		$result = mysqli_query($this->connect, $this->sql);
 		

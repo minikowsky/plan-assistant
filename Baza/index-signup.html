@@ -14,17 +14,17 @@
 	
 	let ajax=new XMLHttpRequest();
 	
-	ajax.open("POST",`http://192.168.0.4/planZajec/login.php?login=test& password=test`,true);
+	ajax.open("POST",`http://192.168.1.110/planZajec/signup.php?login=gf& password=gf`,true);
 	
 	ajax.onreadystatechange=function(){
 		if(ajax.readyState==4 && ajax.status==200)
 		{
 			switch(ajax.responseText) {
 			case "1":
-				alert("Poprawne logowanie");
+				alert("Poprawne wykonanie");
 				break;
 			case "0":
-				alert("Niepoprawne dane");
+				alert("Błędne zapytanie");
 				break;
 			case "-1":
 				alert("Błąd w połączeniu z bazą");
@@ -33,7 +33,7 @@
 				alert("Dane zostały źle przekazane");
 				break;
 			default:
-				alert("Nieznany błąd");
+				alert("Konto o takim loginie już istnieje");
 			}
 		}	
 	};

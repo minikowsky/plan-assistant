@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Lut 2022, 11:09
+-- Czas generowania: 09 Lut 2022, 10:43
 -- Wersja serwera: 10.4.22-MariaDB
 -- Wersja PHP: 8.1.1
 
@@ -38,6 +38,14 @@ CREATE TABLE `subject` (
   `color` text COLLATE cp1250_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1250 COLLATE=cp1250_polish_ci;
 
+--
+-- Zrzut danych tabeli `subject`
+--
+
+INSERT INTO `subject` (`id`, `name`, `day`, `start_time`, `end_time`, `note`, `login`, `color`) VALUES
+(6, 'Nazwa ', 'Poniedziałek', '08:00:00', '09:30:00', 'Notatka ', 'test ', '#FFFFFF'),
+(7, 'Ang', 'Środa', '10:00:00', '12:00:00', 'Test', 'test', '#FFFFFF');
+
 -- --------------------------------------------------------
 
 --
@@ -46,8 +54,17 @@ CREATE TABLE `subject` (
 
 CREATE TABLE `user` (
   `login` varchar(50) COLLATE cp1250_polish_ci NOT NULL,
-  `password` varchar(50) COLLATE cp1250_polish_ci NOT NULL
+  `password` varchar(50) COLLATE cp1250_polish_ci NOT NULL,
+  `theme` enum('highContrast','blue','red','green','orange','blackNgold','gray') COLLATE cp1250_polish_ci NOT NULL DEFAULT 'gray'
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1250 COLLATE=cp1250_polish_ci;
+
+--
+-- Zrzut danych tabeli `user`
+--
+
+INSERT INTO `user` (`login`, `password`, `theme`) VALUES
+('test', 'test', 'gray'),
+('test2', 'test2', 'blue');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -70,11 +87,6 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
 
---
--- AUTO_INCREMENT dla tabeli `subject`
---
-ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ograniczenia dla zrzutów tabel
