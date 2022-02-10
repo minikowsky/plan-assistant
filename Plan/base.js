@@ -207,7 +207,6 @@ function base_getJsonOfSubjects(login) {
 	ajax.send();
 }
 
-
 function base_addSubject(id, name, day, start_time, end_time, note, login, color) {
 	let ajax=new XMLHttpRequest();
 	
@@ -238,7 +237,7 @@ function base_addSubject(id, name, day, start_time, end_time, note, login, color
 	ajax.send();
 }
 
-function base_editSubject(name, day, start_time, end_time, note, login, color) {
+function base_editSubject(id, name, day, start_time, end_time, note, login, color) {
     
 	let ajax=new XMLHttpRequest();
 	
@@ -249,7 +248,7 @@ function base_editSubject(name, day, start_time, end_time, note, login, color) {
 		{
 			switch(ajax.responseText) {
 			case "1":
-				alert("Edytowano przedmiot");
+				console.log("Edytowano przedmiot");
 				break;
 			case "0":
 				alert("Błąd w zapytaniu");
@@ -279,7 +278,7 @@ function base_deleteSubject(id) {
 		{
 			switch(ajax.responseText) {
 			case "1":
-				alert("Usunieto przedmiot");
+				console.log("Usunieto przedmiot");
 				break;
 			case "0":
 				alert("Błąd w zapytaniu");

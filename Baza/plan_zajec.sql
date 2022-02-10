@@ -71,13 +71,6 @@ INSERT INTO `user` (`login`, `password`, `theme`) VALUES
 --
 
 --
--- Indeksy dla tabeli `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `login` (`login`);
-
---
 -- Indeksy dla tabeli `user`
 --
 ALTER TABLE `user`
